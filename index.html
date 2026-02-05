@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Valentine?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+
+      background-color: #000;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url("./bg.gif");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(6px);
+      padding: 32px 28px;
+      border-radius: 22px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+      max-width: 360px;
+      width: 90%;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #2f2f2f;
+      margin-bottom: 14px;
+    }
+
+    .avatar {
+      width: 160px;
+      margin: 18px auto;
+      transition: transform 0.3s ease;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    button {
+      border: none;
+      padding: 12px 22px;
+      font-size: 16px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    #yesBtn {
+      background: #ff5c8a;
+      color: white;
+      box-shadow: 0 8px 20px rgba(255, 92, 138, 0.4);
+    }
+
+    #noBtn {
+      background: #f0f0f0;
+      color: #444;
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Will you be my Valentine? 💓</h1>
+
+  <img src="avatar_happy.png" class="avatar" id="avatar">
+
+  <div class="buttons">
+    <button id="yesBtn" onclick="yesClicked()">Yes 😙</button>
+    <button id="noBtn" onclick="noClicked()">No 😤</button>
+  </div>
+</div>
+
+<script>
+  let noCount = 0;
+
+  const noTexts = [
+    "No 😤",
+    "Aishu veladadaa 🥺",
+    "en chello laaa 😭",
+    "ippidi pannade ma 🥲",
+    "peh 😶"
+  ];
+
+  function noClicked() {
+    noCount++;
+
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const avatar = document.getElementById("avatar");
+
+    yesBtn.style.transform = `scale(${1 + noCount * 0.25})`;
+
+    if (noCount <= 5) {
+      noBtn.innerText = noTexts[noCount];
+    }
+
+    avatar.src = "avatar_sad.png";
+
+    if (noCount >= 5) {
+      noBtn.style.display = "none";
+      avatar.src = "avatar_hope.png";
+    }
+  }
+
+  function yesClicked() {
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+        background-color:#000;
+        background-image:
+          linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+          url('./bg.gif');
+        background-size:cover;
+        background-position:center;
+        background-repeat:no-repeat;
+        color:white;
+        text-align:center;
+        padding:20px;
+        font-family:'Playfair Display', serif;
+      ">
+        <h1 style="color:white;">YAYYYY 🌍💓✨</h1>
+        <p style="font-family:'Inter', sans-serif; font-size:16px; max-width:280px;">
+          Ik my Aishu will choose me hehehehehe 😙
+        </p>
+        <img src="avatar_love.png" width="180">
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
